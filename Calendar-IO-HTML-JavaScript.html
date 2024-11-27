@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<head>
+<html lang="es_ES" >
+<meta charset="UTF-8" >
+<meta name="author" content="Pol Flórez Viciana" >
+<meta name="owner" content="Pol Flórez Viciana" >
+<meta name="keywords" content="Calendar, Calendario, IO, Profesional, Web, App, Aplicación, Aplicativo" >
+<title>Calendar IO Profesional Web 3.0</title>
+<meta name="description" content="Consulta una fecha con este programa de calendarios con el que imprimir calendarios." >
+<meta name="robots" content="index, dofollow" >
+<script src="./js/calendario-module.js" ></script>
+
+<style>
+	body {
+		background-color: rgb(0,0,0); text-align: center;
+	} 
+	h1 {
+		color: rgb(128,128,255); text-align: center; text-shadow: 0px 0px 25px green; margin: 0px;
+	}
+	h2 {
+		color: rgb(128,255,128); text-align: center; text-shadow: 0px 0px 25px white; margin: 0px;
+	}
+	h3 {
+		color: rgb(255,127,0); text-align: center; text-shadow: 0px 0px 25px white; margin: 0px;
+	}
+	p {
+		color: white; text-align: left;
+	}
+	a {
+		cursor: pointer;
+		padding: 5px 5px 5px 5px;
+		color: yellow;
+		transition: all 0.8s linear;
+	}
+	a:link { color: rgb(255,255,0); } 
+	a:visited { color: rgb(255,255,128); } 
+	a:hover { color: rgb(255,0,0); }
+
+	.MyInput {
+		cursor: pointer;
+		border-radius: 15px;
+		text-align: center; margin: 2px;
+	}
+	section {
+		vertical-align: text-top;
+		width: 92%; min-width: 420px; max-width: 840px; padding: 10px; 
+		background-color: rgb(32,32,32);
+		border-radius: 25px;	
+		position: absolute; 
+		top: 50%; left: 50%; 
+		transform: translate(-50%,-50%);
+		color: white;
+	}
+	#FechaInicioFechaFin{
+		position: fixed;
+		right: 5px;
+		bottom: 5px;
+		color: white;
+	}
+	#Pantalla1 {
+		display: inline-block;	
+	}
+	#Pantalla2 {
+		display: none;
+	}
+	#Pantalla3 {
+		display: none;
+	}
+	.Centrado{
+		vertical-align: top;
+		display: inline-block;
+		text-align: center;
+	}
+	.Izquierda{
+		vertical-align: top;
+		display: inline-block;
+		text-align: left;
+	}
+	.Derecha{
+		vertical-align: top;
+		display: inline-block;
+		text-align: right;
+	}
+</style>
+</head>
+<body onload="LoadData()">
+<center>
+<h1 id="Titulo" >Calendar IO Web en Español</h1>
+<section id="Pantalla1" >
+	<center>
+		<div class="Izquierda" style="width: 72%;" >
+			<input class="MyInput" type="button" id="BotonEjemplo1" name="BotonEjemplo1" onclick="Ir3()" value="" title="" />
+			<input class="MyInput" type="button" id="BotonEjemplo2" name="BotonEjemplo2" onclick="ImprimirAnual()" value="" title="" />
+			<input class="MyInput" type="button" id="BotonEjemplo3" name="BotonEjemplo3" onclick="IrHoy()" value="" title="" />
+		</div>
+		<div class="Derecha" >
+			<input class="MyInput" type="button" id="BotonAyuda" name="BotonAyuda" onclick="Ir2()" value="Ayuda" style="background-color: red; color: white;" title="¿Necesitas Ayuda?" />
+		</div>
+		<br><br>
+		<form>
+			<input type="radio" id="Espanol" name="Espanol" checked onclick="SetCalendar()" />Español
+			<input type="radio" id="Ingles" name="Espanol" onclick="SetCalendar()"  />English
+			<br><br>
+			<input type="number" id="NumeroDia" value="1" min="0" max="31" style="width: 40px; text-align: center;" />
+			<input type="number" id="NumeroMes" value="1" min="1" max="12" style="width: 40px; text-align: center;" />
+			<input type="number" id="NumeroAno" value="2025" min="0" max="9999" style="width: 70px; text-align: center;" />
+			<input class="MyInput" type="button" value="Ok" onclick="SetCalendar()" style="width: 40px; text-align: center;" /><br>
+		</form>
+	</center>	
+<br>
+<div id="Cuadro1" ></div>
+</section>
+<section id="Pantalla2" class="Derecha" >
+	<input type="button" onclick="Ir1()" style="background-color: red; color: white;" value="X" />
+		<center>
+			<h2 id="TituloAyuda">Ayuda de Calendar IO Web Profesional</h2>
+			<p id="TextoAyuda">Esta es la App Calendar IO Web Profesional para navegadores web.</p>
+			<a href="https://dos-a-la-tres.com/aplicaciones-online.php#Calendario-ON-LINE-de-Pol-Software" target="_BLANK" >Calendar IO Web Profesional</a>	
+		</center>
+</section>
+<section id="Pantalla3" class="Derecha" >
+	<input type="button" onclick="Ir1()" style="background-color: red; color: white;" value="X" />
+		<center>
+			<canvas id="RelojMini" width="200" height="200" ></canvas>	
+		</center>
+</section>
+</center>
+<footer id="FechaInicioFechaFin" ><a href="mailto:polflorez@hotmail.com">polflorez@hotmail.com</a> ~ 13/07/2015 - 27/11/2024</footer>
+<script>
+var Tiempo = window.setInterval("DibujarRelojMini()",1000);
+
+function IrHoy(){
+	var Fecha = new Date();
+	var SelDia = Dia(Fecha);
+	var SelMes = Mes(Fecha);
+	var SelAno = Ano(Fecha);
+	document.getElementById("NumeroDia").value = SelDia;
+	document.getElementById("NumeroMes").value = SelMes;
+	document.getElementById("NumeroAno").value = SelAno;
+	SetCalendar();
+}
+function ImprimirAnual(){
+	var SelAno = parseInt(document.getElementById("NumeroAno").value);
+	var Idioma = document.getElementById("Espanol").checked;
+	if ( Idioma == true ) {
+		document.write( "<center><table><tr><td>" + CrearCalendarioES(0, 1, SelAno) + "</td><td>" + CrearCalendarioES(0, 2, SelAno) + "</td><td>" + CrearCalendarioES(0, 3, SelAno) + "</td><tr><td>" + CrearCalendarioES(0, 4, SelAno) + "</td><td>" + CrearCalendarioES(0, 5, SelAno) + "</td><td>" + CrearCalendarioES(0, 6, SelAno) + "</td></tr><tr><td>" + CrearCalendarioES(0, 7, SelAno) + "</td><td>" + CrearCalendarioES(0, 8, SelAno) + "</td><td>" + CrearCalendarioES(0, 9, SelAno) + "</td></tr><tr><td>" + CrearCalendarioES(0, 10, SelAno) + "</td><td>" + CrearCalendarioES(0, 11, SelAno) + "</td><td>" + CrearCalendarioES(0, 12, SelAno) + "</td></tr></table></center>" );
+	}else{
+		document.write( "<center><table><tr><td>" + CrearCalendarioEN(0, 1, SelAno) + "</td><td>" + CrearCalendarioEN(0, 2, SelAno) + "</td><td>" + CrearCalendarioEN(0, 3, SelAno) + "</td><tr><td>" + CrearCalendarioEN(0, 4, SelAno) + "</td><td>" + CrearCalendarioEN(0, 5, SelAno) + "</td><td>" + CrearCalendarioEN(0, 6, SelAno) + "</td></tr><tr><td>" + CrearCalendarioEN(0, 7, SelAno) + "</td><td>" + CrearCalendarioEN(0, 8, SelAno) + "</td><td>" + CrearCalendarioEN(0, 9, SelAno) + "</td></tr><tr><td>" + CrearCalendarioEN(0, 10, SelAno) + "</td><td>" + CrearCalendarioEN(0, 11, SelAno) + "</td><td>" + CrearCalendarioEN(0, 12, SelAno) + "</td></tr></table></center>" );
+	}
+}
+function CambiarIdioma(){
+	var Idioma = document.getElementById("Espanol").checked;
+	if ( Idioma == true ) {
+		document.getElementById("Titulo").innerHTML = "Calendar IO Web en Español";
+		document.getElementById("BotonEjemplo1").value = "Ir al Reloj";
+		document.getElementById("BotonEjemplo1").title = "Ir al Reloj de Agujas.";
+		document.getElementById("BotonEjemplo2").value = "Imprimir Año";
+		document.getElementById("BotonEjemplo2").title = "Imprimir Anuario del Año.";
+		document.getElementById("BotonEjemplo3").value = "Ir a Hoy";
+		document.getElementById("BotonEjemplo3").title = "Situarse en Hoy.";
+		document.getElementById("TituloAyuda").innerHTML = "Ayuda de Calendar IO Web Profesional en Español";
+		document.getElementById("TextoAyuda").innerHTML = "Esta es la App Calendar IO Web Profesional para navegadores web.<br>Introduzca una fecha en las casillas de selección y pulse sobre la opción adecuada para continuar.<br><br>Más información y descarga en:";
+		document.getElementById("BotonAyuda").value = "Ayuda";
+	}else{
+		document.getElementById("Titulo").innerHTML = "Calendar IO Web in English";
+		document.getElementById("BotonEjemplo1").value = "Goto Clock";
+		document.getElementById("BotonEjemplo1").title = "Goto Clock Hands.";
+		document.getElementById("BotonEjemplo2").value = "Print Year";
+		document.getElementById("BotonEjemplo2").title = "Print Annuary of Year.";
+		document.getElementById("BotonEjemplo3").value = "Goto Today";
+		document.getElementById("BotonEjemplo3").title = "Situate in Today.";
+		document.getElementById("TituloAyuda").innerHTML = "Help Calendar IO Web Profesional in English";
+		document.getElementById("TextoAyuda").innerHTML = "This is the App Calendar IO Web Profesional for navigators web.<br>Enter a date in the selection boxes and click on the appropriate option to continue.<br><br>More information and download:";
+		document.getElementById("BotonAyuda").value = "Help";
+	}
+}
+function LoadData(){
+	var Fecha = new Date();
+	var SelDia = Dia(Fecha);
+	var SelMes = Mes(Fecha);
+	var SelAno = Ano(Fecha);
+	var ControlCuadro = document.getElementById("Cuadro1");
+	var CoDia = document.getElementById("NumeroDia");
+	CoDia.value = parseInt(SelDia);
+	var CoMes = document.getElementById("NumeroMes");
+	CoMes.value = parseInt(SelMes);
+	var CoAno = document.getElementById("NumeroAno");
+	CoAno.value = parseInt(SelAno);
+	var Idioma = document.getElementById("Espanol").checked;
+	if ( Idioma == true ) {
+		ControlCuadro.innerHTML = CrearCalendarioES(SelDia, SelMes, SelAno);
+	}else{
+		ControlCuadro.innerHTML = CrearCalendarioEN(SelDia, SelMes, SelAno);
+	}
+	CambiarIdioma();
+}
+function SetCalendar(){
+	var ControlCuadro = document.getElementById("Cuadro1");
+	var NumeDia = document.getElementById("NumeroDia").value;
+	var NumeMes = document.getElementById("NumeroMes").value;
+	var NumeAno = document.getElementById("NumeroAno").value;
+	var SelDia = parseInt(NumeDia);
+	var SelMes = parseInt(NumeMes);
+	var SelAno = parseInt(NumeAno);
+	var Idioma = document.getElementById("Espanol").checked;
+	if ( Idioma == true ) {
+		ControlCuadro.innerHTML = CrearCalendarioES(SelDia, SelMes, SelAno);
+	}else{
+		ControlCuadro.innerHTML = CrearCalendarioEN(SelDia, SelMes, SelAno);
+	}
+	CambiarIdioma();
+}
+function Ir1(){
+	document.getElementById("Pantalla1").style = "display: inline-block;";
+	document.getElementById("Pantalla2").style = "display: none;";
+	document.getElementById("Pantalla3").style = "display: none;";
+}
+function Ir2(){
+	document.getElementById("Pantalla1").style = "display: none;";
+	document.getElementById("Pantalla2").style = "display: inline-block;";
+	document.getElementById("Pantalla3").style = "display: none;";
+}
+function Ir3(){
+	document.getElementById("Pantalla1").style = "display: none;";
+	document.getElementById("Pantalla2").style = "display: none;";
+	document.getElementById("Pantalla3").style = "display: inline-block;";
+}
+</script>
+</body>
+</html>
