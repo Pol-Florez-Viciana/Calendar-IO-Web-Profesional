@@ -616,6 +616,38 @@ function Segundo( FechaTempo ){
     return TemporalDate;		
 }
 
+// Funciones de DateDiff
+
+function AnosDiff(Fecha1, Fecha2){
+	var Diferencia = Fecha1 - Fecha2;
+	var Anual = ((((((Diferencia / 365) / 12)/ 31)/ 24)/ 60)/ 60)/ 1000;
+	return parseInt(Anual * 365);
+}
+function MesesDiff(Fecha1, Fecha2){
+	var Diferencia = Fecha1 - Fecha2;
+	var Anual = ((((((Diferencia / 365) / 12)/ 31)/ 24)/ 60)/ 60)/ 1000;
+	return parseInt(Anual * 365 * 12);
+}
+function DiasDiff(Fecha1, Fecha2){
+	var Diferencia = Fecha1 - Fecha2;
+	var Anual = ((((((Diferencia / 365) / 12)/ 31)/ 24)/ 60)/ 60)/ 1000;
+	return parseInt(Anual * 365 * 12 * 31);
+}
+function HorasDiff(Fecha1, Fecha2){
+	var Diferencia = Fecha1 - Fecha2;
+	var Anual = ((((((Diferencia / 365) / 12)/ 31)/ 24)/ 60)/ 60)/ 1000;
+	return parseInt(Anual * 365 * 12 * 31 * 24);
+}
+function MinutosDiff(Fecha1, Fecha2){
+	var Diferencia = Fecha1 - Fecha2;
+	var Anual = ((((((Diferencia / 365) / 12)/ 31)/ 24)/ 60)/ 60)/ 1000;
+	return parseInt(Anual * 365 * 12 * 31 * 24 * 60);
+}
+function SegundosDiff(Fecha1, Fecha2){
+	var Diferencia = Fecha1 - Fecha2;
+	var Anual = ((((((Diferencia / 365) / 12)/ 31)/ 24)/ 60)/ 60)/ 1000;
+	return parseInt(Anual * 365 * 12 * 31 * 24 * 60 * 60);
+}
 
 function TextoFecha( FechaTempo ) {
     var DiaSemanaT = DiaSemana(FechaTempo);

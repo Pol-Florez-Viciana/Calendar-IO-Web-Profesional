@@ -5,7 +5,7 @@
 <meta name="author" content="Pol Flórez Viciana" >
 <meta name="owner" content="Pol Flórez Viciana" >
 <meta name="keywords" content="Calendar, Calendario, IO, Profesional, Web, App, Aplicación, Aplicativo" >
-<title>Calendar IO Profesional Web 3.0</title>
+<title>Calendar IO Profesional Web 4.0</title>
 <meta name="description" content="Consulta una fecha con este programa de calendarios con el que imprimir calendarios." >
 <meta name="robots" content="index, dofollow" >
 <script src="./js/calendario-module.js" ></script>
@@ -66,6 +66,9 @@
 	#Pantalla3 {
 		display: none;
 	}
+	#Pantalla4 {
+		display: none;
+	}
 	.Centrado{
 		vertical-align: top;
 		display: inline-block;
@@ -92,6 +95,7 @@
 			<input class="MyInput" type="button" id="BotonEjemplo1" name="BotonEjemplo1" onclick="Ir3()" value="" title="" />
 			<input class="MyInput" type="button" id="BotonEjemplo2" name="BotonEjemplo2" onclick="ImprimirAnual()" value="" title="" />
 			<input class="MyInput" type="button" id="BotonEjemplo3" name="BotonEjemplo3" onclick="IrHoy()" value="" title="" />
+			<input class="MyInput" type="button" id="BotonDateDiffDialogo" name="BotonDateDiffDialogo" onclick="Ir4()" value="" title="" />
 		</div>
 		<div class="Derecha" >
 			<input class="MyInput" type="button" id="BotonAyuda" name="BotonAyuda" onclick="Ir2()" value="Ayuda" style="background-color: red; color: white;" title="¿Necesitas Ayuda?" />
@@ -124,11 +128,58 @@
 			<canvas id="RelojMini" width="200" height="200" ></canvas>	
 		</center>
 </section>
+<section id="Pantalla4" class="Derecha" >
+	<input type="button" onclick="Ir1()" style="background-color: red; color: white;" value="X" />
+	<center>
+		<h2 id="TituloDateDiff">Date Diff</h2>
+		<p id="TextoDateDiff" >Introduzca las Fechas:<br>
+		<label >Fecha 1</label>	<input type="text" id="Fecha1" placeholder="2024-01-01 00:00:00" style="width: 150px; text-align: center;" /><br>
+		<label >Fecha 2</label>	<input type="text" id="Fecha2" placeholder="2025-01-01 00:00:00" style="width: 150px; text-align: center;" /><br>
+		<br>
+		<input id="DateDiffAnos" class="MyInput" type="button" value="Años" onclick="DateDiffAnos()" style="text-align: center;" />
+		<input id="DateDiffMeses" class="MyInput" type="button" value="Meses" onclick="DateDiffMeses()" style="text-align: center;" />
+		<input id="DateDiffDias" class="MyInput" type="button" value="Días" onclick="DateDiffDias()" style="text-align: center;" />
+		<input id="DateDiffHoras" class="MyInput" type="button" value="Horas" onclick="DateDiffHoras()" style="text-align: center;" />
+		<input id="DateDiffMinutos" class="MyInput" type="button" value="Minutos" onclick="DateDiffMinutos()" style="text-align: center;" />
+		<input id="DateDiffSegundos" class="MyInput" type="button" value="Segundos" onclick="DateDiffSegundos()" style="text-align: center;" />
+		<br><br>
+	</center>
+</section>
 </center>
-<footer id="FechaInicioFechaFin" ><a href="mailto:polflorez@hotmail.com">polflorez@hotmail.com</a> ~ 13/07/2015 - 27/11/2024</footer>
+<footer id="FechaInicioFechaFin" ><a href="mailto:polflorez@hotmail.com">polflorez@hotmail.com</a> ~ 13/07/2015 - 29/11/2024</footer>
 <script>
 var Tiempo = window.setInterval("DibujarRelojMini()",1000);
 
+function DateDiffAnos(){
+	var Fecha1 = new Date(document.getElementById("Fecha1").value);
+	var Fecha2 = new Date(document.getElementById("Fecha2").value);
+	alert(AnosDiff(Fecha1,Fecha2) + " Años");
+}
+function DateDiffMeses(){
+	var Fecha1 = new Date(document.getElementById("Fecha1").value);
+	var Fecha2 = new Date(document.getElementById("Fecha2").value);
+	alert(MesesDiff(Fecha1,Fecha2) + " Meses");
+}
+function DateDiffDias(){
+	var Fecha1 = new Date(document.getElementById("Fecha1").value);
+	var Fecha2 = new Date(document.getElementById("Fecha2").value);
+	alert(DiasDiff(Fecha1,Fecha2) + " Días");
+}
+function DateDiffHoras(){
+	var Fecha1 = new Date(document.getElementById("Fecha1").value);
+	var Fecha2 = new Date(document.getElementById("Fecha2").value);
+	alert(HorasDiff(Fecha1,Fecha2) + " Horas");
+}
+function DateDiffMinutos(){
+	var Fecha1 = new Date(document.getElementById("Fecha1").value);
+	var Fecha2 = new Date(document.getElementById("Fecha2").value);
+	alert(MinutosDiff(Fecha1,Fecha2) + " Minutos");
+}
+function DateDiffSegundos(){
+	var Fecha1 = new Date(document.getElementById("Fecha1").value);
+	var Fecha2 = new Date(document.getElementById("Fecha2").value);
+	alert(SegundosDiff(Fecha1,Fecha2) + " Segundos");
+}
 function IrHoy(){
 	var Fecha = new Date();
 	var SelDia = Dia(Fecha);
@@ -161,6 +212,9 @@ function CambiarIdioma(){
 		document.getElementById("TituloAyuda").innerHTML = "Ayuda de Calendar IO Web Profesional en Español";
 		document.getElementById("TextoAyuda").innerHTML = "Esta es la App Calendar IO Web Profesional para navegadores web.<br>Introduzca una fecha en las casillas de selección y pulse sobre la opción adecuada para continuar.<br><br>Más información y descarga en:";
 		document.getElementById("BotonAyuda").value = "Ayuda";
+		document.getElementById("TextoDateDiff").value = "Introduzca las Fechas:";
+		document.getElementById("BotonDateDiffDialogo").value = "DateDiff";
+		document.getElementById("BotonDateDiffDialogo").title = "Diferencia entre Fechas";
 	}else{
 		document.getElementById("Titulo").innerHTML = "Calendar IO Web in English";
 		document.getElementById("BotonEjemplo1").value = "Goto Clock";
@@ -172,6 +226,9 @@ function CambiarIdioma(){
 		document.getElementById("TituloAyuda").innerHTML = "Help Calendar IO Web Profesional in English";
 		document.getElementById("TextoAyuda").innerHTML = "This is the App Calendar IO Web Profesional for navigators web.<br>Enter a date in the selection boxes and click on the appropriate option to continue.<br><br>More information and download:";
 		document.getElementById("BotonAyuda").value = "Help";
+		document.getElementById("TextoDateDiff").value = "Input Dates:";
+		document.getElementById("BotonDateDiffDialogo").value = "DateDiff";
+		document.getElementById("BotonDateDiffDialogo").title = "Dates Diferences";
 	}
 }
 function LoadData(){
@@ -214,16 +271,25 @@ function Ir1(){
 	document.getElementById("Pantalla1").style = "display: inline-block;";
 	document.getElementById("Pantalla2").style = "display: none;";
 	document.getElementById("Pantalla3").style = "display: none;";
+	document.getElementById("Pantalla4").style = "display: none;";
 }
 function Ir2(){
 	document.getElementById("Pantalla1").style = "display: none;";
 	document.getElementById("Pantalla2").style = "display: inline-block;";
 	document.getElementById("Pantalla3").style = "display: none;";
+	document.getElementById("Pantalla4").style = "display: none;";
 }
 function Ir3(){
 	document.getElementById("Pantalla1").style = "display: none;";
 	document.getElementById("Pantalla2").style = "display: none;";
 	document.getElementById("Pantalla3").style = "display: inline-block;";
+	document.getElementById("Pantalla4").style = "display: none;";
+}
+function Ir4(){
+	document.getElementById("Pantalla1").style = "display: none;";
+	document.getElementById("Pantalla2").style = "display: none;";
+	document.getElementById("Pantalla3").style = "display: none;";
+	document.getElementById("Pantalla4").style = "display: inline-block;";
 }
 </script>
 </body>
