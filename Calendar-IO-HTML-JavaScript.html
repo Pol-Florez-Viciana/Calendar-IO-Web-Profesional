@@ -5,7 +5,7 @@
 <meta name="author" content="Pol Flórez Viciana" >
 <meta name="owner" content="Pol Flórez Viciana" >
 <meta name="keywords" content="Calendar, Calendario, IO, Profesional, Web, App, Aplicación, Aplicativo" >
-<title>Calendar IO Profesional Web 4.2</title>
+<title>Calendar IO Profesional Web 4.3</title>
 <meta name="description" content="Consulta una fecha con este programa de calendarios con el que imprimir calendarios." >
 <meta name="robots" content="index, dofollow" >
 <script src="./js/calendario-module.js" ></script>
@@ -226,6 +226,12 @@ function CambiarIdioma(){
 		document.getElementById("TextoFecha2").innerHTML = "Fecha 2:";
 		document.getElementById("BotonDateDiffDialogo").value = "DateDiff";
 		document.getElementById("BotonDateDiffDialogo").title = "Diferencia entre Fechas";
+		document.getElementById("DateDiffAnos").value = "Años";
+		document.getElementById("DateDiffMeses").value = "Meses";
+		document.getElementById("DateDiffDias").value = "Dias";
+		document.getElementById("DateDiffHoras").value = "Horas";
+		document.getElementById("DateDiffMinutos").value = "Minutos";
+		document.getElementById("DateDiffSegundos").value = "Segundos";
 	}else{
 		document.getElementById("Titulo").innerHTML = "Calendar IO Web in English";
 		document.getElementById("BotonEjemplo1").value = "Goto Clock";
@@ -242,6 +248,12 @@ function CambiarIdioma(){
 		document.getElementById("TextoFecha2").innerHTML = "Date 2:";
 		document.getElementById("BotonDateDiffDialogo").value = "DateDiff";
 		document.getElementById("BotonDateDiffDialogo").title = "Dates Diferences";
+		document.getElementById("DateDiffAnos").value = "Years";
+		document.getElementById("DateDiffMeses").value = "Months";
+		document.getElementById("DateDiffDias").value = "Days";
+		document.getElementById("DateDiffHoras").value = "Hours";
+		document.getElementById("DateDiffMinutos").value = "Minutes";
+		document.getElementById("DateDiffSegundos").value = "Seconds";
 	}
 }
 function LoadData(){
