@@ -5,7 +5,7 @@
 <meta name="author" content="Pol Flórez Viciana" >
 <meta name="owner" content="Pol Flórez Viciana" >
 <meta name="keywords" content="Calendar, Calendario, IO, Profesional, Web, App, Aplicación, Aplicativo" >
-<title>Calendar IO Profesional Web 4.0</title>
+<title>Calendar IO Profesional Web 4.1</title>
 <meta name="description" content="Consulta una fecha con este programa de calendarios con el que imprimir calendarios." >
 <meta name="robots" content="index, dofollow" >
 <script src="./js/calendario-module.js" ></script>
@@ -132,7 +132,8 @@
 	<input type="button" onclick="Ir1()" style="background-color: red; color: white;" value="X" />
 	<center>
 		<h2 id="TituloDateDiff">Date Diff</h2>
-		<p id="TextoDateDiff" >Introduzca las Fechas:<br>
+		<p id="TextoDateDiff" >Introduzca las Fechas:</p>
+		<br>
 		<label >Fecha 1</label>	<input type="text" id="Fecha1" placeholder="2024-01-01 00:00:00" style="width: 150px; text-align: center;" /><br>
 		<label >Fecha 2</label>	<input type="text" id="Fecha2" placeholder="2025-01-01 00:00:00" style="width: 150px; text-align: center;" /><br>
 		<br>
@@ -146,7 +147,7 @@
 	</center>
 </section>
 </center>
-<footer id="FechaInicioFechaFin" ><a href="mailto:polflorez@hotmail.com">polflorez@hotmail.com</a> ~ 13/07/2015 - 29/11/2024</footer>
+<footer id="FechaInicioFechaFin" ><a href="mailto:polflorez@hotmail.com">polflorez@hotmail.com</a> ~ 13/07/2015 - 30/11/2024</footer>
 <script>
 var Tiempo = window.setInterval("DibujarRelojMini()",1000);
 
@@ -200,7 +201,15 @@ function ImprimirAnual(){
 	}
 }
 function CambiarIdioma(){
+	var Fecha = new Date();
+	document.getElementById("Fecha1").value = Ano(Fecha) + "-" + Mes(Fecha) + "-" + Dia(Fecha) + " 00:00:00";
+	document.getElementById("Fecha1").placeholder = Ano(Fecha) + "-01-01 00:00:00";
+	document.getElementById("Fecha2").value = (parseInt(Ano(Fecha)) + 1) + "-01-01 00:00:00";
+	document.getElementById("Fecha2").placeholder = (parseInt(Ano(Fecha)) + 1) + "-01-01 00:00:00";
+	
+	
 	var Idioma = document.getElementById("Espanol").checked;
+	
 	if ( Idioma == true ) {
 		document.getElementById("Titulo").innerHTML = "Calendar IO Web en Español";
 		document.getElementById("BotonEjemplo1").value = "Ir al Reloj";

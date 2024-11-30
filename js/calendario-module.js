@@ -1,6 +1,6 @@
 /* 
  * Este es el Modulo Calendar IO para Javascript realizado por Pol Florez Viciana
- * se creo el 13/07/2015 y se Reviso el dia 27/11/2024 
+ * se creo el 13/07/2015 y se Reviso el dia 30/11/2024 
  * 
  * Funciones de Cadenas y Numeros
  *      EsNumero(Numero);               EsTexto(Texto);
@@ -40,7 +40,13 @@
  *      NumeroDiasMes(Fecha);
  *      NumeroDiaAno(Fecha);
  *      CrearCalendarioES(Dia,Mes,Ano); 
- *      CrearCalendarioEN(Dia,Mes,Ano); 
+ *      CrearCalendarioEN(Dia,Mes,Ano);
+ *      AnosDiff(Fecha1,Fecha2);
+ *      MesessDiff(Fecha1,Fecha2);
+ *      DiassDiff(Fecha1,Fecha2);
+ *      HorasDiff(Fecha1,Fecha2);
+ *      MinutosDiff(Fecha1,Fecha2);
+ *      SegundosDiff(Fecha1,Fecha2); 
  */
 
 /* Funciones de Strings y Numeros */
