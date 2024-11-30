@@ -5,7 +5,7 @@
 <meta name="author" content="Pol Flórez Viciana" >
 <meta name="owner" content="Pol Flórez Viciana" >
 <meta name="keywords" content="Calendar, Calendario, IO, Profesional, Web, App, Aplicación, Aplicativo" >
-<title>Calendar IO Profesional Web 4.1</title>
+<title>Calendar IO Profesional Web 4.2</title>
 <meta name="description" content="Consulta una fecha con este programa de calendarios con el que imprimir calendarios." >
 <meta name="robots" content="index, dofollow" >
 <script src="./js/calendario-module.js" ></script>
@@ -134,8 +134,8 @@
 		<h2 id="TituloDateDiff">Date Diff</h2>
 		<p id="TextoDateDiff" >Introduzca las Fechas:</p>
 		<br>
-		<label >Fecha 1</label>	<input type="text" id="Fecha1" placeholder="2024-01-01 00:00:00" style="width: 150px; text-align: center;" /><br>
-		<label >Fecha 2</label>	<input type="text" id="Fecha2" placeholder="2025-01-01 00:00:00" style="width: 150px; text-align: center;" /><br>
+		<label id="TextoFecha1" >Fecha 1</label>	<input type="text" id="Fecha1" placeholder="2024-01-01 00:00:00" style="width: 150px; text-align: center;" /><br>
+		<label id="TextoFecha2" >Fecha 2</label>	<input type="text" id="Fecha2" placeholder="2025-01-01 00:00:00" style="width: 150px; text-align: center;" /><br>
 		<br>
 		<input id="DateDiffAnos" class="MyInput" type="button" value="Años" onclick="DateDiffAnos()" style="text-align: center;" />
 		<input id="DateDiffMeses" class="MyInput" type="button" value="Meses" onclick="DateDiffMeses()" style="text-align: center;" />
@@ -221,7 +221,9 @@ function CambiarIdioma(){
 		document.getElementById("TituloAyuda").innerHTML = "Ayuda de Calendar IO Web Profesional en Español";
 		document.getElementById("TextoAyuda").innerHTML = "Esta es la App Calendar IO Web Profesional para navegadores web.<br>Introduzca una fecha en las casillas de selección y pulse sobre la opción adecuada para continuar.<br><br>Más información y descarga en:";
 		document.getElementById("BotonAyuda").value = "Ayuda";
-		document.getElementById("TextoDateDiff").value = "Introduzca las Fechas:";
+		document.getElementById("TextoDateDiff").innerHTML = "Introduzca las Fechas:";
+		document.getElementById("TextoFecha1").innerHTML = "Fecha 1:";
+		document.getElementById("TextoFecha2").innerHTML = "Fecha 2:";
 		document.getElementById("BotonDateDiffDialogo").value = "DateDiff";
 		document.getElementById("BotonDateDiffDialogo").title = "Diferencia entre Fechas";
 	}else{
@@ -235,7 +237,9 @@ function CambiarIdioma(){
 		document.getElementById("TituloAyuda").innerHTML = "Help Calendar IO Web Profesional in English";
 		document.getElementById("TextoAyuda").innerHTML = "This is the App Calendar IO Web Profesional for navigators web.<br>Enter a date in the selection boxes and click on the appropriate option to continue.<br><br>More information and download:";
 		document.getElementById("BotonAyuda").value = "Help";
-		document.getElementById("TextoDateDiff").value = "Input Dates:";
+		document.getElementById("TextoDateDiff").innerHTML = "Input Dates:";
+		document.getElementById("TextoFecha1").innerHTML = "Date 1:";
+		document.getElementById("TextoFecha2").innerHTML = "Date 2:";
 		document.getElementById("BotonDateDiffDialogo").value = "DateDiff";
 		document.getElementById("BotonDateDiffDialogo").title = "Dates Diferences";
 	}
